@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Algal Transformation Database</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 64 64" aria-hidden="true">
+        <circle cx="32" cy="32" r="26" fill="none" stroke="#4CAF50" stroke-width="3"/>
+        <circle cx="24" cy="26" r="6" fill="#75A025"/>
+        <circle cx="40" cy="24" r="5" fill="#E9ED4C"/>
+        <circle cx="30" cy="42" r="7" fill="#4CAF50"/>
+        <circle cx="44" cy="38" r="4" fill="#75A025"/>
+      </svg>
+      <div>
+        <h1>Algal Genetic Transformation Database</h1>
+        <p class="tagline">Successful genetic transformation techniques in Chlorophyta &amp; Ochrophyta — compiled from primary literature</p>
+      </div>
+    </div>
+    <div class="stats" id="stats">
+      <div class="stat"><span class="stat-num" id="stat-entries">–</span><span class="stat-label">Entries</span></div>
+      <div class="stat"><span class="stat-num" id="stat-species">–</span><span class="stat-label">Species</span></div>
+      <div class="stat"><span class="stat-num" id="stat-methods">–</span><span class="stat-label">Method families</span></div>
+      <div class="stat"><span class="stat-num" id="stat-eff">–</span><span class="stat-label">With efficiency</span></div>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="controls" aria-label="Filters">
+    <div class="search-wrap">
+      <input type="search" id="search" placeholder="Search species, method, marker, author…" autocomplete="off">
+    </div>
+    <div class="filter-group">
+      <select id="filter-clade"><option value="">All clades</option></select>
+      <select id="filter-species"><option value="">All species</option></select>
+      <select id="filter-method"><option value="">All methods</option></select>
+      <select id="filter-compartment">
+        <option value="">All compartments</option>
+        <option value="Nuclear">Nuclear</option>
+        <option value="Chloroplast">Chloroplast</option>
+        <option value="Mitochondrial">Mitochondrial</option>
+      </select>
+      <label class="toggle">
+        <input type="checkbox" id="only-efficiency" checked>
+        <span>Only entries with quantified efficiency</span>
+      </label>
+      <button id="reset" class="btn-reset" type="button">Reset</button>
+    </div>
+  </section>
+
+  <section class="table-wrap">
+    <table id="db-table" aria-describedby="table-caption">
+      <caption id="table-caption" class="sr-only">Transformation entries with species, method, marker, efficiency and citation</caption>
+      <thead>
+        <colgroup>
+          <col class="c-species"><col class="c-strain"><col class="c-method"><col class="c-marker"><col class="c-eff"><col class="c-year"><col class="c-cite">
+        </colgroup>
+        <tr>
+          <th data-sort="species" class="sortable">Species</th>
+          <th data-sort="strain" class="sortable">Strain</th>
+          <th data-sort="methodGroup" class="sortable">Method</th>
+          <th data-sort="marker" class="sortable">Marker / Reporter</th>
+          <th data-sort="efficiency" class="sortable">Transformation Efficiency</th>
+          <th data-sort="year" class="sortable sorted-desc">Year</th>
+          <th>Primary Literature</th>
+        </tr>
+      </thead>
+      <tbody id="table-body">
+        <tr><td colspan="7" class="loading">Loading database…</td></tr>
+      </tbody>
+    </table>
+    <p id="count" class="count"></p>
+  </section>
+
+  <section class="about">
+    <h2>About this database</h2>
+    <p>This database catalogs reports of <strong>successful genetic transformation in Chlorophyta (green algae) and Ochrophyta — including diatoms, eustigmatophytes, xanthophytes, and brown algae</strong> — drawn from the primary scientific literature. Entries document the species, strain, delivery method, selectable marker or reporter, and — where reported — the quantified transformation efficiency, exactly as stated by the original authors.</p>
+    <p>Efficiency metrics are heterogeneous across studies (transformants per µg DNA, transformants per 10<sup>6</sup> cells, percentage of positive cells, editing frequency, etc.) and are <strong>not directly comparable between entries</strong>; always consult the original paper for experimental context. Entries without a retrievable quantified value are landmark transformation reports retained for completeness and can be hidden with the efficiency filter. Some CRISPR-based entries report genome-editing or homologous-recombination frequencies rather than stable-transformation rates; this is noted per entry.</p>
+    <p>Scope note: organisms outside Chlorophyta and Ochrophyta (e.g., cyanobacteria, red algae) are excluded. A small number of efficiency values were sourced from citing peer-reviewed papers where the original was paywalled; these are flagged in the entry notes.</p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>Algal Genetic Transformation Database — Chlorophyta &amp; Ochrophyta, data compiled from primary literature, September 2026. Each entry links to its source publication via DOI.</p>
+</footer>
+
+<script src="data/entries.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
