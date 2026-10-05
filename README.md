@@ -40,7 +40,7 @@ All entries live in [`data/entries.json`](data/entries.json). Each entry records
 
 ## Deployment
 
-The site is pure static HTML/CSS/JS. To publish with GitHub Pages: Settings → Pages → deploy from branch (`main`, root). No build step needed.
+The site is pure static HTML/CSS/JS.
 
 ## License
 
